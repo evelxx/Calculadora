@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Continhas</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+           color: white;
+        }
+
+        .fundo {
+            background-image: linear-gradient(45deg, hsl(197, 86%, 66%), hsl(60, 100%, 89%));
+            height: 100vh;
+            color: aliceblue;
+            font-family: Comic Sans MS, Comic Sans, cursive;
+            text-align: center;
+            
+        }
+
+        .calculadora {
+            position: absolute;
+            background-color: rgba(137, 43, 226, 0.11);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            border-radius: 15px;
+            padding: 15px;
+
+        }
+        .botao {
+            width: 50px;
+            height: 50px;
+            font-size: 25px;
+            cursor: pointer;
+            background-color: burlywood;
+            color: white;
+            border-radius: 5px;
+            border-color: rgba(216, 191, 216, 0.664);
+            margin: 3px;
+        }
+        .botao:hover {
+            background-color: rgb(236, 75, 75);
+        }
+        #resultado{
+            width: 207px;
+            background-color: white;
+            height: 30px;
+            margin: 5px;
+            font-size: 25px;
+            color: tomato;
+            text-align: right;
+            padding: 5px;
+        }
+    
+    </style>
+</head>
+<body>
+    <div class="fundo">
+      <h1>Faça suas Continhas</h1>
+     <div class="calculadora"> 
+         <h1>Calculadora</h1>
+         <p id="resultado"></p>
+         <table>
+             <tr>
+                 <td><button class="botao" onclick="limpar()">C</button></td>
+                 <td><button class="botao" onclick="apagar()"><</button></td>
+                 <td><button class="botao" onclick="inserir('/')">/</button></td>
+                 <td><button class="botao" onclick="inserir('*')">x</button></td>
+
+             </tr>
+             <tr>
+                <td><button class="botao" onclick="inserir(7)">7</button></td>
+                <td><button class="botao" onclick="inserir(8)">8</button></td>
+                <td><button class="botao" onclick="inserir(9)">9</button></td>
+                <td><button class="botao" onclick="inserir('-')">-</button></td>
+
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="inserir(4)">4</button></td>
+                <td><button class="botao" onclick="inserir(5)">5</button></td>
+                <td><button class="botao" onclick="inserir(6)">6</button></td>
+                <td><button class="botao" onclick="inserir('+')">+</button></td>
+
+            </tr>
+            <tr>
+                <td><button class="botao" onclick="inserir(1)">1</button></td>
+                <td><button class="botao" onclick="inserir(2)">2</button></td>
+                <td><button class="botao" onclick="inserir(3)">3</button></td>
+                <td rowspan="2"><button class="botao" style="height: 106px;" onclick="calcular()">=</button></td>
+
+            </tr>
+            <tr>
+                <td colspan="2"><button class="botao" style="width: 106px;" onclick="inserir(0)">0</button></td>    
+                <td><button class="botao" onclick="inserir(',')">,</button></td>
+            </tr>
+         </table>
+     </div>
+    </div>
+    <script>
+        function inserir(NUM) {
+            var numero = document.getElementById('resultado').innerHTML; //pega o NUM que seria recebido por essa linha inteira e coloca em baixo para que o parágrafo não apague o algarismo anterior colocando o novo algarismo. Assim, com o NUM em baixo, podem-se colocar vários algarismos juntos dentro do paragrafo. E criou um var número para essa linha atual.#pega o que já tinha e isere novos números#
+            document.getElementById('resultado').innerHTML = numero + NUM; // Agora escreve algarismos em sequência no parágrafo da calculadora.
+              
+        }
+        function limpar(){
+            document.getElementById('resultado').innerHTML = "";
+        }
+        function apagar() {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length - 1)
+        }
+        function calcular(){
+            var resultado = document.getElementById('resultado').innerHTML; 
+            if(resultado){ 
+                document.getElementById('resultado').innerHTML = eval(resultado)
+            }
+            else{ 
+                document.getElementById('resultado').innerHTML = 'Nada ...'
+            }
+        }
+    </script>
+</body>
+</html>
